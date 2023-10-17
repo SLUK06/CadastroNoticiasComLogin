@@ -16,7 +16,7 @@
         //Verifica se o Usuário Inseriu um usuario
         if($usuario == ""){
 
-            die("Por Favor Insira um Usuário");
+            $msgUsuario = "Por Favor Insira um Usuário";
 
         }else{
 
@@ -36,7 +36,7 @@
             //Verifica se o Usuário Inseriu um Email
             elseif($email == ""){
 
-                die("Por Favor Insira um Email");
+                $msgEmail = "Por Favor Insira um Email";
 
             } else {
 
