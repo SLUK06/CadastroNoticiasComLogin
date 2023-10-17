@@ -17,6 +17,6 @@ include "../Config/Functions.php";
 </head>
 <body>
     <?php include "../Includes/Header.php" ?> 
-      
+     < 
 </body>
 </html>

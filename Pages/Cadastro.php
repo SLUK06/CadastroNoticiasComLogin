@@ -89,6 +89,7 @@
             }
         }
     }
+    $Conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

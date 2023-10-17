@@ -45,7 +45,7 @@
     <main class="conteudo-login">
         <div class="container-form">
         <text class="titulo">LOGIN</text>
-            <form class="form-login" method="post">
+            <form class="form-login" action="Login.php" method="post">
                 <label class="inputs">
                     Email ou Usuário:
                     <input type="text" name="Usuario" class="usuario" placeholder="Email ou Usuário" required>
