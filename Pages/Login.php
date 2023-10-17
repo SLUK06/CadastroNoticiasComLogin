@@ -35,17 +35,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="StyleSheet" type="text/css" href="../Styles/StylesForms.css">
     <title>Login</title>
 </head>
 <body>
     <main class="conteudo-login">
-        <form class="form-login" method="post">
-            <input type="text" name="Usuario" class="usuario"required>
-            <input type="password" name="Senha" class="senha" required>
-            <button type="submit" class="btn-send">LOG IN</button>
-            <?php echo $loginInvalido ?>
-        </form>
+        <div class="container-form">
+            <form class="form-login" method="post">
+                <label>
+                    Email ou Usuário:
+                    <input type="text" name="Usuario" class="usuario" placeholder="Email ou Usuário" required>
+                </label>
+                <label>
+                    Senha:
+                    <input type="password" name="Senha" class="senha" placeholder="Senha" required>
+                </label>
+                    <button type="submit" class="btn-send">LOG IN</button>
+                    <?php echo $loginInvalido ?>
+            </form>
             <text>Não possui uma conta? <a href="Cadastro.php">Cadastre-se</a></text>
+        </div>
     </main>
 </body>
 </html>

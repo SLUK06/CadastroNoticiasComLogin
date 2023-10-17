@@ -93,22 +93,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="StyleSheet" type="text/css" href="../Styles/StylesForms.css">
+    <title>Cadastro</title>
 </head>
 <body>
-    <main class="conteudo-login">
-        <form class="form-login" action="Cadastro.php" method="post">
-            <input type="text" name="NomeCompleto" class="input" placeholder="Nome Completo" required>
-            <input type="email" name="Email"class="input" placeholder="Email" required>
-            <input type="text" name="Usuario" class="input" placeholder="Usuario" required>
-            <input type="password" name="Senha" class="input" placeholder="Senha" required>
-            <input type="password" name="VerificaSenha" class="input" placeholder="Repita a Senha" required>
-            <button type="submit" class="btn-send">CADASTRAR</button>
-            <?php echo $msgSenhasDiferentes ?>
-            <?php echo $msgEmail ?>
-            <?php echo $msgUsuario ?>
-        </form>
+    <main class="conteudo-cadastro">
+        <div class="container-form">
+            <form class="form-cadastro" action="Cadastro.php" method="post">
+                <label>
+                    Nome Completo:
+                    <input type="text" name="NomeCompleto" class="input" placeholder="Nome Completo" required>
+                </label>
+                <label>
+                    Email:
+                    <input type="email" name="Email"class="input" placeholder="Email" required>
+                </label>
+                <label>
+                    Usuário:
+                    <input type="text" name="Usuario" class="input" placeholder="Usuario" required>
+                </label>    
+                <label>
+                    Senha:
+                    <input type="password" name="Senha" class="input" placeholder="Senha" required>
+                </label>    
+                <label>
+                    Verifique sua Senha:
+                    <input type="password" name="VerificaSenha" class="input" placeholder="Repita a Senha" required>
+                </label>
+                <button type="submit" class="btn-send">CADASTRAR</button>
+                <text class="mgs-erros">
+                    <?php echo $msgSenhasDiferentes ?>
+                    <?php echo $msgEmail ?>
+                    <?php echo $msgUsuario ?>
+                </text>
+            </form>
             <text>Já possui uma conta? <a href="Login.php">Faça o Login</a></text>
+        </div>
     </main>
 </body>
 </html>
