@@ -137,6 +137,7 @@
                 </text>
             </form>
             <text class="text-possui">Já possui uma conta? <a href="Login.php">Fazer Login</a></text>
+            <a href="Home.php">Navegar sem Cadastro</a>
         </div>
     </main>
 </body>

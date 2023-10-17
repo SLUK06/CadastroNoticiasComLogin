@@ -2,7 +2,7 @@
 if(!isset($_SESSION)) session_start();
 include "../Config/Config.php";
 include "../Config/Functions.php";
-
+include "../Config/BuscaPublicacoes.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,6 +17,25 @@ include "../Config/Functions.php";
 </head>
 <body>
     <?php include "../Includes/Header.php" ?> 
-     < 
+    <main>
+        <div class="titulo-home">
+            <text>ÚLTIMAS PUBLICAÇÕES</text>
+        </div>
+        <div class="ultimas-publicacoes">
+            <?php for($i = 0; $i < count($nome); $i ++){ ?>
+                <div class="Publicacoes">
+                    <div class="nome">
+                        <?php echo $nome[$i] ?>
+                    </div>
+                    <div class="titulo">
+                        <?php echo $titulo[$i] ?>
+                    </div>
+                    <div class="conteudo">
+                        <?php echo $conteudo[$i] ?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </main>
 </body>
 </html>
