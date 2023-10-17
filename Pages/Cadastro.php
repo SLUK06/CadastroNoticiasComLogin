@@ -19,6 +19,8 @@
             die("Por Favor Insira um Usuário");
 
         }else{
+
+            //Busca pelo Usuário no Banco de Dados
             $sql = "SELECT `email` FROM `usuarios` WHERE `usuario` = ? ";
             $stmt = $Conn->prepare($sql);
             $stmt->bind_param("s", $usuario);
@@ -38,6 +40,7 @@
 
             } else {
 
+                //Busca pelo Email no Banco de Dados
                 $sql = "SELECT `email` FROM `usuarios` WHERE `email` = ? ";
                 $stmt = $Conn->prepare($sql);
                 $stmt->bind_param("s", $email);
