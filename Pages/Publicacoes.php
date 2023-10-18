@@ -30,7 +30,7 @@
 
             if ($resultConn !== TRUE) {
                 header("Location: " . $_SERVER['PHP_SELF']);
-                exit;
+                
                 $msgSucessoErro = "Notícia publicada com SUCESSO!</br>";
         
                 exit;
