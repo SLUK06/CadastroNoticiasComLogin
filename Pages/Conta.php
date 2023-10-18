@@ -1,6 +1,8 @@
 <?php
 include "../Config/Config.php";
 
+
+
 if(!isset($_SESSION)) session_start();
 
 if(!isset($_SESSION['UsuarioID'])){
@@ -8,6 +10,7 @@ if(!isset($_SESSION['UsuarioID'])){
     header("Location: Home.php");
     exit;
 }
+$idUsuario = $_SESSION['UsuarioID'];
 $nomeUsuario = $_SESSION['UsuarioNome'];
 $userUsuario = $_SESSION['UsuarioUser'];
 $emailUsuario = $_SESSION['UsuarioEmail'];
@@ -35,57 +38,103 @@ $Conn->close();
 <body>
     <?php include "../Includes/Header.php" ?> 
     <main>
-        <div class="titulo-conta">
-            <text>MINHA CONTA</text>
+        <div class="links-minha-conta">
+            <a class="link-conta" href="Conta.php?aba=dadosConta">MEUS DADOS</a>
+            <a class="link-conta" href="Conta.php?aba=minhasPublicacoes">MINHAS PUBLICAÇÕES</a>
         </div>
 
-        <div class="sessao meu-nome">
-            <label>
-                Meu Nome:
-                <text><b><?php echo $nomeUsuario ?></b></text>
-            </label>
-        </div>
+        <?php if($_GET['aba'] == 'dadosConta'){ ?>
+            <section class="info-conta">
+                <div class="titulo-conta">
+                    <text>MINHA CONTA</text>
+                </div>
 
-        <div class="sessao meu-usuario">
-            <label>
-                Meu Usuario:
-                <text><b><?php echo $userUsuario ?></b></text>
-            </label>
-        </div>
+                <div class="sessao meu-nome">
+                    <label>
+                        Nome:
+                        <text><b><?php echo $nomeUsuario ?></b></text>
+                    </label>
+                </div>
 
-        <div class="sessao meu-email">
-            <label>
-                Meu Email:
-                <text><b><?php echo $emailUsuario ?></b></text>
-            </label>
-        </div>
+                <div class="sessao meu-usuario">
+                    <label>
+                        Usuario:
+                        <text><b><?php echo $userUsuario ?></b></text>
+                    </label>
+                </div>
 
-        <div class="sessao meu-nivel">
-            <label>
-                Meu Nível de Usuario:
-                <text><b><?php echo $nivelUsuario ?></b></text>
-            </label>
-        </div>
+                <div class="sessao meu-id">
+                    <label>
+                        Id:
+                        <text><b><?php echo "#".$idUsuario ?></b></text>
+                    </label>
+                </div>
 
-        <div class="sessao alterar-senha">
-            <label>
-                teste
-            </label>
-        </div>
-        <?php
-        if($_SESSION['UsuarioNivel'] == 2){ ?>
-            <div class="sessao alterar-senha">
-            <label>
-            <a class="link-admin" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
-            </label>
-        </div>
+                <div class="sessao meu-email">
+                    <label>
+                        Email:
+                        <text><b><?php echo $emailUsuario ?></b></text>
+                    </label>
+                </div>
+
+                <div class="sessao meu-nivel">
+                    <label>
+                        Nível de Usuario:
+                        <text><b><?php echo $nivelUsuario ?></b></text>
+                    </label>
+                </div>
+
+                <div class="sessao alterar-senha">
+                    <label>
+                        Em Desenvolvimento
+                    </label>
+                </div>
+                <?php
+                if($_SESSION['UsuarioNivel'] == 2){ ?>
+                    <div class="sessao alterar-senha">
+                    <label>
+                    <a class="link-admin" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
+                    </label>
+                </div>
+                <?php } ?>
+                <div class="sessao fezer-logout">
+                    <label>
+                        <a class="link-logout" href="../Config/LogOut.php">DESLOGAR</a>    
+                    </label>
+                </div>
+            </section>
         <?php } ?>
-        <div class="sessao fezer-logout">
-            <label>
-                <a class="link-logout" href="../Config/LogOut.php">DESLOGAR</a>    
-            </label>
-        </div>
-        
+
+        <?php if($_GET['aba'] == 'minhasPublicacoes'){
+            $_SESSION['sql'] = "SELECT * FROM `postagens` WHERE `idUsuario` = $idUsuario ORDER BY `id` DESC";
+            include "../Config/BuscaPublicacoes.php";
+            
+        ?>
+
+            <section class="Conteudo">
+                <div class="Todas-Publicacoes">
+                    <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
+                        <div class="publicacoes">
+                        <div class="nome">
+                            <b><?php echo $nomeBp[$i] ?></b> publicou:
+                        </div>
+                        <div class="titulo">
+                            <?php echo $tituloBp[$i] ?>
+                        </div>
+                        <div class="conteudo">
+                            <?php echo $conteudoBp[$i] ?>
+                        </div>
+                        <?php
+                            if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
+                                <div class="botoes-acao">
+                                    <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
+                                </div>
+                        <?php } ?>
+                    </div>
+                    <?php } ?>
+                </div>
+            </section>
+        <?php } ?>
     </main> 
 </body>
 </html>

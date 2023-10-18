@@ -4,7 +4,6 @@
     font-family: 'Work Sans', sans-serif;
 }
 body{
-    width: 100vw;
     height: 100vh;
     background-color: #BDBDBD;
 }
@@ -49,4 +48,34 @@ body{
     border: 1px solid #2196F3;
     background-color: #2196F3;
     color: #ffffff;
+}
+.links-minha-conta{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.link-conta{
+    font-weight: bold;
+    margin: 0 5px;
+    padding: 2px;
+    color: #757575;
+    text-decoration: none;
+    transition: all 400ms ease;
+    border-radius: 5px;
+    color: #2196F3;
+}
+.link-conta:hover{
+    border: 0px solid #2196F3;
+    background-color: #2196F3;
+    color: #ffffff;
+}
+@media(max-width: 700px){
+    .sessao{
+        width: auto;
+    }
+    .info-conta{
+        width: 95vw;
+    }
 }

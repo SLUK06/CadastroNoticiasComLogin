@@ -1,13 +1,21 @@
 <?php
+if(!isset($_SESSION)) session_start();
 include "Config.php";
-
-    $sql = "SELECT * FROM `postagens` ORDER BY `id` DESC";
-    $resultPosts = $Conn->query($sql);
 
     $nomeBp = array();
     $tituloBp = array();
     $conteudoBp = array();
     $dataBp = array();
+    $idPublicBp = array();
+    $idUsrPublicBp = array();
+
+
+    $sql = $_SESSION['sql'];
+    $resultPosts = $Conn->query($sql);
+
+    if (!$resultPosts) {
+        die( "Erro: " . $Conn->error);
+    }
 
     if($resultPosts->num_rows > 0){
         while($row = $resultPosts->fetch_assoc()){
@@ -15,7 +23,9 @@ include "Config.php";
             $tituloBp[] = $row['titulo'];
             $conteudoBp[] = $row['conteudo'];
             $dataBp[] = $row['data'];
+            $idPublicBp[] = $row['id'];
+            $idUsrPublicBp[] = $row['idUsuario'];
         }
     } else {
-        $msgSemPublicacao = "Nehuma Publicação Foi Encontrada!";
+        echo "Nehuma Publicação Foi Encontrada!";
     }

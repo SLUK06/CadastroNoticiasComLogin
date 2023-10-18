@@ -1,11 +1,14 @@
 <?php
     include("../Config/Config.php");
+    include("../Config/Functions.php");
     if(!isset($_SESSION)) session_start();
+    if(!isset($_SESSION['UsuarioID'])){
+        $_SESSION['UsuarioID'] = null;
+    }
 
     $msgErro = "";
     $msgSucessoErro = "";
     $msgSemPublicacao = "";
-
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(!isset($_SESSION['UsuarioID'])){
@@ -35,7 +38,7 @@
             }
         }
     }
-    include "../Config/BuscaPublicacoes.php";
+    
     $Conn->close();
 ?>
 <!DOCTYPE html>
@@ -71,6 +74,10 @@
             <text>TODAS AS PUBLICAÇÕES</text>
         </div>
         <section class="Conteudo">
+            <?php 
+                $_SESSION['sql'] = "SELECT * FROM `postagens` ORDER BY `id` DESC";
+                include "../Config/BuscaPublicacoes.php";
+            ?>
             <div class="Todas-Publicacoes">
                 <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
                     <div class="publicacoes">
@@ -83,6 +90,12 @@
                     <div class="conteudo">
                         <?php echo $conteudoBp[$i] ?>
                     </div>
+                    <?php
+                        if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
+                            <div class="botoes-acao">
+                                <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
+                            </div>
+                    <?php } ?>
                 </div>
                 <?php } ?>
             </div>

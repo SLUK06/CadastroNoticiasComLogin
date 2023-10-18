@@ -7,7 +7,7 @@
 
             $paginaAtual = basename($_SERVER['SCRIPT_FILENAME']);
 
-            $paginaNoticias = "Noticias.php";
+            $paginaPublicacoes = "Noticias.php";
             $paginaHome = "Home.php";
             $paginaConta = "Conta.php";
 
@@ -15,8 +15,8 @@
                 echo '<a class="link-pages" href="Home.php">Home</a>';
             }
 
-            if($paginaAtual !== $paginaNoticias){
-                echo '<a class="link-pages" href="Noticias.php">Notícias</a>';
+            if($paginaAtual !== $paginaPublicacoes){
+                echo '<a class="link-pages" href="Noticias.php">Publicações</a>';
             }
         ?>
         <?php 
@@ -27,7 +27,7 @@
         <?php
         }else{ 
             if($paginaAtual !== $paginaConta){
-                echo '<a class="link-pages" href="Conta.php">Minha Conta</a>';
+                echo '<a class="link-pages" href="Conta.php?aba=minhasPublicacoes">Minha Conta</a>';
             }?>
             
         <?php

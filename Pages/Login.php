@@ -26,7 +26,7 @@
             $_SESSION['UsuarioEmail'] = $resultado['email'];
             $_SESSION['UsuarioNivel'] = $resultado['nivel'];
 
-            header("Location: Conta.php");
+            header("Location: Conta.php?aba=minhasPublicacoes");
             exit;
         }
     }

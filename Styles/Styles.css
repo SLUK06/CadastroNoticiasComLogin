@@ -4,7 +4,6 @@
     font-family: 'Work Sans', sans-serif;
 }
 body{
-    width: 100vw;
     height: 100vh;
     background-color: #BDBDBD;
 }
@@ -13,7 +12,11 @@ header{
     align-items: center;
     justify-content: space-between;
     height: auto;
-    padding: 15px 20px;
+    padding: 15px 0;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0; 
     background-color: #ffffff;
 }
 main{
@@ -21,18 +24,19 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    margin: 90px 20px 20px 20px;
 }
 .titulo-site{
     font-size: 35px;
     font-weight: bold;
     text-align: center;
+    padding: 0 0 0 50px;
 }
 .link-pages, button{
     font-size: 25px;
     font-weight: bold;
     margin: 0 5px;
-    padding: 2px;
+    padding: 3px;
     background-color: #ffffff;
     text-decoration: none;
     text-align: center;
@@ -41,8 +45,15 @@ main{
     border-radius: 5px;
     color: #2196F3;
 }
+.links-header{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px 0 0;
+}
 .link-pages:hover, button:hover{
-    border: 1px solid #2196F3;
+    border: 0px solid #2196F3;
     background-color: #2196F3;
     color: #ffffff;
 }
@@ -122,13 +133,29 @@ form input, form textarea{
     align-self: center;
     text-align: start; 
 }
-
+.botoes-acao{
+    align-self: flex-end;
+}
+.btn-excluir{
+    font-size: 15px;
+    color: #c91313;
+}
+.btn-excluir:hover{
+    border: 0px solid #c91313;
+    background-color: #c91313;
+    color: #ffffff;
+}
+@media(max-width: 755px){
+    header{
+        flex-direction: column;
+    }
+    .titulo-site, .links-header{
+        padding: 0;
+    }
+}
 @media(max-width: 700px){
     .publicacoes{
         width: 90vw;
-    }
-    header{
-        flex-direction: column;
     }
     .form-post{
         width: 90vw;
