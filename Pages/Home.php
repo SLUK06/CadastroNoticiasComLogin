@@ -3,6 +3,7 @@ if(!isset($_SESSION)) session_start();
 include "../Config/Config.php";
 include "../Config/Functions.php";
 include "../Config/BuscaPublicacoes.php";
+$Conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

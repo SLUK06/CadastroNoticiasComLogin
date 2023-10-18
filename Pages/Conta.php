@@ -18,7 +18,7 @@ if($_SESSION['UsuarioNivel'] == 1){
 }elseif($_SESSION['UsuarioNivel'] == 2){
     $nivelUsuario = "ADMINISTRADOR";
 }
-
+$Conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
