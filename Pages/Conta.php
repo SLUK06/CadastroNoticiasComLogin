@@ -76,14 +76,13 @@ $Conn->close();
         if($_SESSION['UsuarioNivel'] == 2){ ?>
             <div class="sessao alterar-senha">
             <label>
-            <a class="link-logout" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
+            <a class="link-admin" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
             </label>
         </div>
         <?php } ?>
         <div class="sessao fezer-logout">
             <label>
-                Fazer Log Out:
-                <a class="link-logout" href="../Config/LogOut.php">Deslogar</a>    
+                <a class="link-logout" href="../Config/LogOut.php">DESLOGAR</a>    
             </label>
         </div>
         
