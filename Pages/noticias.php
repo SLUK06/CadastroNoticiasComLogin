@@ -1,16 +1,18 @@
 <?php
     include("../Config/Config.php");
-    include "../Config/BuscaPublicacoes.php";
     if(!isset($_SESSION)) session_start();
 
     $msgErro = "";
     $msgSucessoErro = "";
     $msgSemPublicacao = "";
 
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(!isset($_SESSION['UsuarioID'])){
-            $msgErro = "Para Publicar uma Notícia Você Prescisa estar logado! <a href='Login.php'>Fazer Login</a>";
-        }else{
+            $msgErro = "Para Fazer uma Publicação Você Prescisa Estar Logado! <a href='Login.php'>Fazer Login</a>";
+        }elseif((empty($_POST['Titulo'])) || (empty($_POST['Conteudo']))){
+            $msgErro = "Por Favor Insira um Título e um Conteudo!";
+        } else{
             $titulo = $_POST['Titulo'];
             $conteudo = $_POST['Conteudo'];
             $idUsuario = $_SESSION['UsuarioID'];
@@ -33,6 +35,7 @@
             }
         }
     }
+    include "../Config/BuscaPublicacoes.php";
     $Conn->close();
 ?>
 <!DOCTYPE html>
@@ -44,28 +47,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="StyleSheet" type="text/css" href="../Styles/Styles.css">
-    <title>Notícias</title>
+    <title>Publicações</title>
 </head>
 <body>
-    <?php include "../Includes/Header.php" ?> 
-    <form action="Noticias.php" method="POST">
-        <input type="text" name="Titulo" placeholder="Titulo">
-        <input type="text" name="Conteudo" placeholder="Conteudo">
-        <button type="submit">PUBLICAR</button>
-        <?php echo $msgErro ?>
-    </form>
-    <?php for($i = 0; $i < count($nome); $i ++){ ?>
-        <div class="Publicacoes">
-            <div class="nome">
-                <b><?php echo $nome[$i] ?></b> publicou:
-            </div>
-            <div class="titulo">
-                <?php echo $titulo[$i] ?>
-            </div>
-            <div class="conteudo">
-                <?php echo $conteudo[$i] ?>
-            </div>
+    <?php include "../Includes/Header.php" ?>
+    <main>
+        <div class="form-post">
+            <form action="Noticias.php" method="POST">
+                <label>
+                    <b>Título:</b>
+                    <input type="text" name="Titulo" placeholder="Titulo" required>
+                </label>
+                <label>
+                    <b>Conteúdo:</b>
+                        <textarea type="textarea" name="Conteudo" placeholder="Conteudo" style="resize: vertical; overflow: auto;" required></textarea>
+                </label>
+                <button type="submit">PUBLICAR</button>
+            </form>
+            <?php echo $msgErro ?>
+            <?php echo $msgSucessoErro ?>
+        </div> 
+        <div class="titulo-noticias">
+            <text>TODAS AS PUBLICAÇÕES</text>
         </div>
-    <?php } ?>
+        <section class="Conteudo">
+            <div class="Todas-Publicacoes">
+                <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
+                    <div class="publicacoes">
+                    <div class="nome">
+                        <b><?php echo $nomeBp[$i] ?></b> publicou:
+                    </div>
+                    <div class="titulo">
+                        <?php echo $tituloBp[$i] ?>
+                    </div>
+                    <div class="conteudo">
+                        <?php echo $conteudoBp[$i] ?>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

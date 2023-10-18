@@ -7,7 +7,7 @@
         $usuario = $_POST["Usuario"];
         $senha = $_POST["Senha"];
 
-        $sql = "SELECT `id`, `nome`, `nivel` FROM  `usuarios` WHERE (BINARY `usuario` = ? OR BINARY `email` = ?) AND BINARY `senha` = ? AND `ativo` = 1 LIMIT 1";
+        $sql = "SELECT `id`, `nome`, `nivel`, `usuario`, `email` FROM  `usuarios` WHERE (BINARY `usuario` = ? OR BINARY `email` = ?) AND BINARY `senha` = ? AND `ativo` = 1 LIMIT 1";
         $stmt = $Conn->prepare($sql);
         $stmt->bind_param("sss", $usuario, $usuario, $senha);
         $stmt->execute();
@@ -22,6 +22,8 @@
 
             $_SESSION['UsuarioID'] = $resultado['id'];
             $_SESSION['UsuarioNome'] = $resultado['nome'];
+            $_SESSION['UsuarioUser'] = $resultado['usuario'];
+            $_SESSION['UsuarioEmail'] = $resultado['email'];
             $_SESSION['UsuarioNivel'] = $resultado['nivel'];
 
             header("Location: Conta.php");

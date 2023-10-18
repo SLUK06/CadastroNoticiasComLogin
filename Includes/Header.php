@@ -1,6 +1,6 @@
 <header>
     <div class="titulo-site">
-        <text>NOTÍCIAS SLO CITY</text>
+        <text>PUBLICA SLO CITY</text>
     </div>
     <nav class="links-header">
         <?php
@@ -12,24 +12,24 @@
             $paginaConta = "Conta.php";
 
             if($paginaAtual !== $paginaHome){
-                echo '<a href="Home.php">Home</a>';
+                echo '<a class="link-pages" href="Home.php">Home</a>';
             }
 
             if($paginaAtual !== $paginaNoticias){
-                echo '<a href="Noticias.php">Notícias</a>';
+                echo '<a class="link-pages" href="Noticias.php">Notícias</a>';
             }
         ?>
         <?php 
         if(!isset($_SESSION['UsuarioID'])){ ?>
-            <a href="Cadastro.php">Cadastrar</a>
-            <a href="Login.php">Logar</a>
+            <a class="link-pages" href="Cadastro.php">Cadastrar</a>
+            <a class="link-pages" href="Login.php">Logar</a>
 
         <?php
         }else{ 
             if($paginaAtual !== $paginaConta){
-                echo '<a href="Conta.php">Minha Conta</a>';
+                echo '<a class="link-pages" href="Conta.php">Minha Conta</a>';
             }?>
-            <a href="../Config/LogOut.php">Sair</a>
+            
         <?php
         }?>
         

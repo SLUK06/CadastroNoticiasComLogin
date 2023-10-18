@@ -77,7 +77,7 @@
                     //Verifica se a Inserção de Dados foi bem Sucedida
                     if($result->num_rows == 1){
                         
-                        echo "Erro ao Inserir Dados";
+                        echo "Erro ao Realizar o Cadastro";
         
                     } else {
         

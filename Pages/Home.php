@@ -17,25 +17,29 @@ include "../Config/BuscaPublicacoes.php";
 </head>
 <body>
     <?php include "../Includes/Header.php" ?> 
+
     <main>
-        <div class="titulo-home">
+        <div class="titulo-noticias">
             <text>ÚLTIMAS PUBLICAÇÕES</text>
         </div>
-        <div class="ultimas-publicacoes">
-            <?php for($i = 0; $i < count($nome); $i ++){ ?>
-                <div class="Publicacoes">
-                    <div class="nome">
-                        <?php echo $nome[$i] ?>
+    
+        <section class="Conteudo">
+            <div class="Ultimas-Publicacoes">
+                <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
+                    <div class="publicacoes">
+                        <div class="nome">
+                            <b><?php echo $nomeBp[$i] ?></b> publicou:
+                        </div>
+                        <div class="titulo">
+                            <?php echo $tituloBp[$i] ?>
+                        </div>
+                        <div class="conteudo">
+                            <?php echo $conteudoBp[$i] ?>
+                        </div>
                     </div>
-                    <div class="titulo">
-                        <?php echo $titulo[$i] ?>
-                    </div>
-                    <div class="conteudo">
-                        <?php echo $conteudo[$i] ?>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
+        </section>
     </main>
 </body>
 </html>

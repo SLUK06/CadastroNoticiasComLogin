@@ -6,13 +6,131 @@
 body{
     width: 100vw;
     height: 100vh;
-    background-color: #BBDEFB;
+    background-color: #BDBDBD;
 }
 header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: auto;
+    padding: 15px 20px;
+    background-color: #ffffff;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+.titulo-site{
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+.link-pages, button{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 5px;
+    padding: 2px;
+    background-color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    transition: all 400ms ease;
+    border: none;
+    border-radius: 5px;
+    color: #2196F3;
+}
+.link-pages:hover, button:hover{
+    border: 1px solid #2196F3;
+    background-color: #2196F3;
+    color: #ffffff;
+}
+.form-post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    padding: 10px;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #757575;
+    border-radius: 5px;
+}
+.form-post form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+form input, form textarea{
+    padding: 2px;
+    width: 99%;
+}
+.form-post label, .form-post button{
+    width: 98%;
+    height: auto;
+    margin: 5px;
+}
+.resizeble{
+    resize: vertical;
+}
+.titulo-noticias{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+.Conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.publicacoes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #757575;
+    border-radius: 5px;
+    width: 500px;
+}
+.nome{
+    align-self: flex-start;
+    height: auto;
+    margin: 5px 0 20px 0;
+}
+.nome b{
+    font-size: 22px;
+}
+.titulo{
+    align-self: center;
+    font-weight: bold;
     height: 30px;
-    padding: 0px 20px;
-    background-color: #BDBDBD;
+    font-size: 18px;
+}
+.conteudo{
+    align-self: center;
+    text-align: start; 
+}
+
+@media(max-width: 700px){
+    .publicacoes{
+        width: 90vw;
+    }
+    header{
+        flex-direction: column;
+    }
+    .form-post{
+        width: 90vw;
+    }
 }
