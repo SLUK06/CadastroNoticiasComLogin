@@ -69,6 +69,9 @@ main{
     border: 1px solid #757575;
     border-radius: 5px;
 }
+.btn-post-open{
+    background-color: #BDBDBD;
+}
 .form-post form{
     display: flex;
     flex-direction: column;
@@ -136,11 +139,16 @@ form input, form textarea{
 .botoes-acao{
     align-self: flex-end;
 }
+.btn-post-close{
+    align-self: flex-end;
+    font-size: 15px;
+    color: #c91313;
+}
 .btn-excluir{
     font-size: 15px;
     color: #c91313;
 }
-.btn-excluir:hover{
+.btn-excluir:hover, .btn-post-close:hover{
     border: 0px solid #c91313;
     background-color: #c91313;
     color: #ffffff;
