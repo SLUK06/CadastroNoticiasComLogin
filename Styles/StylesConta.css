@@ -34,7 +34,7 @@ body{
     justify-content: center;
     flex-direction: row;
 }
-.link-logout, .link-admin{
+.link-logout, .link-admin, .link-senha{
     font-weight: bold;
     margin: 0 5px;
     padding: 2px;
@@ -44,7 +44,7 @@ body{
     border-radius: 5px;
     color: #2196F3;
 }
-.link-logout:hover{
+.link-logout:hover, .link-admin:hover, .link-senha:hover{
     border: 1px solid #2196F3;
     background-color: #2196F3;
     color: #ffffff;

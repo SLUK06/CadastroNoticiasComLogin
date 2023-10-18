@@ -12,7 +12,12 @@ if (isset($_GET['id'])) {
 
     if ($stmt->affected_rows > 0) {
         //Sucesso ao Excluir
-        header("Location: ../Pages/Noticias.php");
+        $fallback = 'index.php';
+
+        $anterior = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $fallback;
+
+        header("location: {$anterior}");
+        exit;
     } else {
         //Falha ao Excluir
         echo "Error deleting the news article.";

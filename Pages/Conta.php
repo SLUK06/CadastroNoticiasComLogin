@@ -66,7 +66,7 @@ $Conn->close();
                 <div class="sessao meu-id">
                     <label>
                         Id:
-                        <text><b><?php echo "#".$idUsuario ?></b></text>
+                        <text><b><?php echo "#".$idUsuario."#" ?></b></text>
                     </label>
                 </div>
 
@@ -86,14 +86,14 @@ $Conn->close();
 
                 <div class="sessao alterar-senha">
                     <label>
-                        Em Desenvolvimento
+                        <a class="link-admin" >MUDAR SENHA</a>
                     </label>
                 </div>
                 <?php
                 if($_SESSION['UsuarioNivel'] == 2){ ?>
-                    <div class="sessao alterar-senha">
+                    <div class="sessao painel-admin">
                     <label>
-                    <a class="link-admin" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
+                        <a class="link-admin" href="Administrador.php">PAINEL DE ADMINISTRADOR</a>  
                     </label>
                 </div>
                 <?php } ?>
