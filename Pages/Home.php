@@ -46,7 +46,7 @@ $Conn->close();
                             <?php echo $conteudoBp[$i] ?>
                         </div>
                         <?php
-                            if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
+                            if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i] || $_SESSION['UsuarioNivel'] == 2){ ?>
                                 <div class="botoes-acao">
                                     <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
                                 </div>

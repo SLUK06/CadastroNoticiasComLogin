@@ -30,7 +30,8 @@
 
             if ($resultConn !== TRUE) {
                 header("Location: " . $_SERVER['PHP_SELF']);
-                $msgSucessoErro =  "Notícia publicada com SUCESSO!</br>";
+                exit;
+                $msgSucessoErro = "Notícia publicada com SUCESSO!</br>";
         
                 exit;
             } else {
@@ -56,7 +57,7 @@
     <?php include "../Includes/Header.php" ?>
     <main>
         <div class="form-post">
-            <form action="Noticias.php" method="POST">
+            <form action="Publicacoes.php" method="POST">
                 <label>
                     <b>Título:</b>
                     <input type="text" name="Titulo" placeholder="Titulo" required>
@@ -91,7 +92,7 @@
                         <?php echo $conteudoBp[$i] ?>
                     </div>
                     <?php
-                        if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
+                        if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i] || $_SESSION['UsuarioNivel'] == 2){ ?>
                             <div class="botoes-acao">
                                 <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
                             </div>
