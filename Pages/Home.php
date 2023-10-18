@@ -34,25 +34,49 @@ $Conn->close();
                 include "../Config/BuscaPublicacoes.php";
             ?>
             <div class="Ultimas-Publicacoes">
-                <?php for($i = 0; $i < count($nomeBp) ; $i ++){ ?>
-                    <div class="publicacoes">
-                        <div class="nome">
-                            <b><?php echo $nomeBp[$i] ?></b> publicou:
+                <?php 
+                if(count($nomeBp) > 10){
+                    $maxPublicacoes = 10;
+                    for($i = 0; $i < $maxPublicacoes ; $i ++){ ?>
+                        <div class="publicacoes">
+                            <div class="nome">
+                                <b><?php echo $nomeBp[$i] ?></b> publicou:
+                            </div>
+                            <div class="titulo">
+                                <?php echo $tituloBp[$i] ?>
+                            </div>
+                            <div class="conteudo">
+                                <?php echo $conteudoBp[$i] ?>
+                            </div>
+                            <?php
+                                if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i] || $_SESSION['UsuarioNivel'] == 2){ ?>
+                                    <div class="botoes-acao">
+                                        <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
+                                    </div>
+                            <?php } ?>
                         </div>
-                        <div class="titulo">
-                            <?php echo $tituloBp[$i] ?>
+                    <?php } 
+                }else{
+                    for($i = 0; $i < count($nomeBp) ; $i ++){ ?>
+                        <div class="publicacoes">
+                            <div class="nome">
+                                <b><?php echo $nomeBp[$i] ?></b> publicou:
+                            </div>
+                            <div class="titulo">
+                                <?php echo $tituloBp[$i] ?>
+                            </div>
+                            <div class="conteudo">
+                                <?php echo $conteudoBp[$i] ?>
+                            </div>
+                            <?php
+                                if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i] || $_SESSION['UsuarioNivel'] == 2){ ?>
+                                    <div class="botoes-acao">
+                                        <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
+                                    </div>
+                            <?php } ?>
                         </div>
-                        <div class="conteudo">
-                            <?php echo $conteudoBp[$i] ?>
-                        </div>
-                        <?php
-                            if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i] || $_SESSION['UsuarioNivel'] == 2){ ?>
-                                <div class="botoes-acao">
-                                    <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
-                                </div>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
+                    <?php } 
+                } ?>
             </div>
         </section>
     </main>
