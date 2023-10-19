@@ -117,7 +117,7 @@ $Conn->close();
                 <?php } ?>
                 <div class="sessao fezer-logout">
                     <label>
-                        <a class="link-logout" href="../Config/LogOut.php">DESLOGAR</a>    
+                        <a class="link-logout" href="../Config/LogOut.php">SAIR</a>    
                     </label>
                 </div>
             </section>
