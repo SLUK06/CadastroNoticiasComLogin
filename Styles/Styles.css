@@ -157,6 +157,9 @@ form input, form textarea{
     header{
         flex-direction: column;
     }
+    main{
+        margin: 115px 20px 20px 20px;
+    }
     .titulo-site, .links-header{
         padding: 0;
     }
@@ -167,5 +170,11 @@ form input, form textarea{
     }
     .form-post{
         width: 90vw;
+    }
+}
+@media(max-width: 390px){
+
+    main{
+        margin: 150px 20px 20px 20px;
     }
 }

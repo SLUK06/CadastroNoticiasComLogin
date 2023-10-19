@@ -63,14 +63,16 @@
                     $msgSenhasDiferentes = "As Senhas não Coincidem!";
         
                 }
-                
+
+                //Se as Senhas Forem Iguais Insere Dados no Banco de Dados
                 elseif($senha === $verificaSenha){
+                    //Encripta a Senha Antes de Armazenar no Banco de Dados 
+                    $senhaCrypt = password_hash($senha, PASSWORD_DEFAULT);
         
-                    //Se as Senhas Forem Iguais Insere Dados no Banco de Dados
                     $sql = "INSERT INTO `usuarios` (`nome`, `usuario`, `email`, `senha`) VALUES (?, ?, ?, ?)";
         
                     $stmt = $Conn->prepare($sql);
-                    $stmt->bind_param("ssss", $nome, $usuario, $email, $senha);
+                    $stmt->bind_param("ssss", $nome, $usuario, $email, $senhaCrypt);
                     $stmt->execute();
                     $result = $stmt->get_result();
         

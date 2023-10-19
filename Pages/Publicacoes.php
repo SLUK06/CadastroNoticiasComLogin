@@ -57,29 +57,31 @@
     <?php include "../Includes/Header.php" ?>
     <main>
         <?php
-            if(!isset($_GET['publicar'])){
-                $_GET['publicar'] = "formPostOff";
+            if($_SESSION['UsuarioID'] !== null){
+                if(!isset($_GET['publicar'])){
+                    $_GET['publicar'] = "formPostOff";
+                } 
+                if($_GET['publicar'] == "formPostOn"){?>
+                    <div class="form-post">
+                        <form action="Publicacoes.php" method="POST">
+                            <label>
+                                <b>Título:</b>
+                                <input type="text" name="Titulo" placeholder="Titulo" required>
+                            </label>
+                            <label>
+                                <b>Conteúdo:</b>
+                                    <textarea type="textarea" name="Conteudo" placeholder="Conteudo" style="resize: vertical; overflow: auto;" required></textarea>
+                            </label>
+                            <button type="submit">PUBLICAR</button>
+                        </form>
+                        <a class="btn-post-close link-pages" href="Publicacoes.php?publicar=formPostOff">FECHAR</a>
+                        <?php echo $msgErro ?>
+                        <?php echo $msgSucessoErro ?>
+                    </div>
+                <?php } else { ?>
+                    <a class="btn-post-open link-pages" href="Publicacoes.php?publicar=formPostOn">CRIAR POST</a>
+                <?php }
             } 
-            if($_GET['publicar'] == "formPostOn"){?>
-                <div class="form-post">
-                    <form action="Publicacoes.php" method="POST">
-                        <label>
-                            <b>Título:</b>
-                            <input type="text" name="Titulo" placeholder="Titulo" required>
-                        </label>
-                        <label>
-                            <b>Conteúdo:</b>
-                                <textarea type="textarea" name="Conteudo" placeholder="Conteudo" style="resize: vertical; overflow: auto;" required></textarea>
-                        </label>
-                        <button type="submit">PUBLICAR</button>
-                    </form>
-                    <a class="btn-post-close link-pages" href="Publicacoes.php?publicar=formPostOff">FECHAR</a>
-                    <?php echo $msgErro ?>
-                    <?php echo $msgSucessoErro ?>
-                </div>
-            <?php } else { ?>
-                <a class="btn-post-open link-pages" href="Publicacoes.php?publicar=formPostOn">CRIAR POST</a>
-            <?php } 
         ?> 
         <div class="titulo-noticias">
             <text>TODAS AS PUBLICAÇÕES</text>

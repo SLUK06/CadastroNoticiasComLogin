@@ -7,9 +7,9 @@
         $usuario = $_POST["Usuario"];
         $senha = $_POST["Senha"];
 
-        $sql = "SELECT `id`, `nome`, `nivel`, `usuario`, `email` FROM  `usuarios` WHERE (BINARY `usuario` = ? OR BINARY `email` = ?) AND BINARY `senha` = ? AND `ativo` = 1 LIMIT 1";
+        $sql = "SELECT `id`, `nome`, `nivel`, `usuario`, `email`, `senha` FROM  `usuarios` WHERE (BINARY `usuario` = ? OR BINARY `email` = ?) AND `ativo` = 1 LIMIT 1";
         $stmt = $Conn->prepare($sql);
-        $stmt->bind_param("sss", $usuario, $usuario, $senha);
+        $stmt->bind_param("ss", $usuario, $usuario);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -18,16 +18,23 @@
         }else{
             $resultado = $result->fetch_assoc();
 
-            if(!isset($_SESSION)) session_start();
+            if(password_verify($senha, $resultado['senha'])){
+                if(!isset($_SESSION)) session_start();
 
-            $_SESSION['UsuarioID'] = $resultado['id'];
-            $_SESSION['UsuarioNome'] = $resultado['nome'];
-            $_SESSION['UsuarioUser'] = $resultado['usuario'];
-            $_SESSION['UsuarioEmail'] = $resultado['email'];
-            $_SESSION['UsuarioNivel'] = $resultado['nivel'];
+                $_SESSION['UsuarioID'] = $resultado['id'];
+                $_SESSION['UsuarioNome'] = $resultado['nome'];
+                $_SESSION['UsuarioUser'] = $resultado['usuario'];
+                $_SESSION['UsuarioEmail'] = $resultado['email'];
+                $_SESSION['UsuarioNivel'] = $resultado['nivel'];
 
-            header("Location: Conta.php?aba=minhasPublicacoes");
-            exit;
+                header("Location: Conta.php?aba=minhasPublicacoes");
+                exit;
+
+            } else {
+                $loginInvalido = "Usuário ou Senha Estão Incorretos!";
+            }
+
+            
         }
     }
     $Conn->close();
