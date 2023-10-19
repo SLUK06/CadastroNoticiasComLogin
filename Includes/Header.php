@@ -1,6 +1,6 @@
 <header>
     <div class="titulo-site">
-        <text>PUBLICA SLO</text>
+        <h1>PUBLICA SLO</h1>
     </div>
     <nav class="links-header">
         <?php
