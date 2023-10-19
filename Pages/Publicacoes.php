@@ -1,7 +1,11 @@
 <?php
     include("../Config/Config.php");
     include("../Config/Functions.php");
+
+    // Verifica se Existe uma Sessão, se não Existir Cria uma
     if(!isset($_SESSION)) session_start();
+
+    // Verifica se Existe um Usuario, se não Existir Seta o UsuarioID como null
     if(!isset($_SESSION['UsuarioID'])){
         $_SESSION['UsuarioID'] = null;
     }
@@ -10,12 +14,24 @@
     $msgSucessoErro = "";
     $msgSemPublicacao = "";
 
+    // Verifica se o Metodo de Request é POST
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        // Verifica se o Usuário Está Logado
         if(!isset($_SESSION['UsuarioID'])){
+
             $msgErro = "Para Fazer uma Publicação Você Prescisa Estar Logado! <a href='Login.php'>Fazer Login</a>";
-        }elseif((empty($_POST['Titulo'])) || (empty($_POST['Conteudo']))){
+
+        }
+        // Verifica se os Inputs Foram Preenchidos
+        elseif((empty($_POST['Titulo'])) || (empty($_POST['Conteudo']))){
+
             $msgErro = "Por Favor Insira um Título e um Conteudo!";
-        } else{
+
+        } 
+        // Faz o Insert no Banco de Dados
+        else {
+
             $titulo = $_POST['Titulo'];
             $conteudo = $_POST['Conteudo'];
             $idUsuario = $_SESSION['UsuarioID'];
@@ -28,6 +44,7 @@
             $stmt->execute();
             $resultConn = $stmt->get_result();
 
+            // Verifica se o Insert foi Realizado
             if ($resultConn !== TRUE) {
                 header("Location: " . $_SERVER['PHP_SELF']);
                 
@@ -50,6 +67,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="StyleSheet" type="text/css" href="../Styles/Styles.css">
     <title>Publicações</title>
 </head>
@@ -67,6 +85,9 @@
                             <label>
                                 <b>Título:</b>
                                 <input type="text" name="Titulo" placeholder="Titulo" required>
+                            </label>
+                            <label>Enviar imagem:
+                                <input type="file" name="pic" accept="image/*" class="form-control">
                             </label>
                             <label>
                                 <b>Conteúdo:</b>
