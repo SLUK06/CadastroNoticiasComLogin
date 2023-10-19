@@ -130,6 +130,9 @@ $Conn->close();
         ?>
 
             <section class="Conteudo">
+                <div class="titulo-conta">
+                    <text>MINHAS PUBLICAÇÕES</text>
+                </div>
                 <div class="Todas-Publicacoes">
                     <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
                         <div class="publicacoes">
