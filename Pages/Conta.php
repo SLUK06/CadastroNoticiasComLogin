@@ -37,7 +37,7 @@ $Conn->close();
     <?php include "../Includes/Header.php" ?> 
     <main>
         <div class="links-minha-conta">
-            <a class="link-conta" href="Conta.php?aba=dadosConta">MEUS DADOS</a>
+            <a class="link-conta" href="Conta.php?aba=dadosConta&mudarSenha=off">MEUS DADOS</a>
             <a class="link-conta" href="Conta.php?aba=minhasPublicacoes">MINHAS PUBLICAÇÕES</a>
         </div>
 
@@ -83,8 +83,28 @@ $Conn->close();
                 </div>
 
                 <div class="sessao alterar-senha">
-                    <label>
-                        <a class="link-admin" >MUDAR SENHA</a>
+                    <label class="mudar-senha">
+                        <?php if($_GET['mudarSenha'] == "off"){ ?>
+                            <a class="link-admin" href="?aba=dadosConta&mudarSenha=on" >MUDAR SENHA</a>
+                            <?php }elseif($_GET['mudarSenha'] == "on"){ ?>
+                                <a class="link-admin" href="?aba=dadosConta&mudarSenha=off" >FECHAR</a>
+
+                                <form class="form-mudar-senha" action="Conta.php" method="POST">
+                                    <label class="inputs">
+                                        Senha Atual:
+                                        <input type="password" name="SenhaAtual" class="input-mudar-senha" placeholder="Senha Atual" required>
+                                    </label>
+                                    <label class="inputs">
+                                        Nova Senha:
+                                        <input type="password" name="NovaSenha" class="input-mudar-senha" placeholder="Nova Senha" required>
+                                    </label>
+                                    <label class="inputs">
+                                        Repita a Nova Senha:
+                                        <input type="password" name="VerificaNovaSenha" class="input-mudar-senha" placeholder="Repita a Nova Senha" required>
+                                    </label>
+                                    <button type="submit" class=" btn-send">MUDAR SENHA</button>
+                                </form>
+                            <?php } ?>
                     </label>
                 </div>
                 <?php

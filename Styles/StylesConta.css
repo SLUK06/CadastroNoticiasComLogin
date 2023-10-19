@@ -71,11 +71,45 @@ body{
     background-color: #2196F3;
     color: #ffffff;
 }
+.mudar-senha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+.form-mudar-senha{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+.input-mudar-senha{
+    margin: 0 0 20px 0;
+    width: 98%;
+}
+
+.form-mudar-senha button{
+    align-self: center;
+}
 @media(max-width: 700px){
     .sessao{
         width: auto;
     }
     .info-conta{
         width: 95vw;
+    }
+}
+@media(max-width: 500px){
+    .mudar-senha{
+        width: 98%;
     }
 }
