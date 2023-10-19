@@ -86,9 +86,6 @@
                                 <b>Título:</b>
                                 <input type="text" name="Titulo" placeholder="Titulo" required>
                             </label>
-                            <label>Enviar imagem:
-                                <input type="file" name="pic" accept="image/*" class="form-control">
-                            </label>
                             <label>
                                 <b>Conteúdo:</b>
                                     <textarea type="textarea" name="Conteudo" placeholder="Conteudo" style="resize: vertical; overflow: auto;" required></textarea>
