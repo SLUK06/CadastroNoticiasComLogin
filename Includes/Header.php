@@ -24,11 +24,11 @@
             }
          
             // Caso o UsuarioID não Esteja Setado Exibe os Links Para Login e Cadastro
-            if(!isset($_SESSION['UsuarioID'])){ ?>
-                <a class="link-pages" href="Cadastro.php">Cadastrar</a>
-                <a class="link-pages" href="Login.php">Logar</a>
+            if(!isset($_SESSION['UsuarioID'])){ 
+                echo '<a class="link-pages" href="Cadastro.php">Cadastrar</a>';
+                echo '<a class="link-pages" href="Login.php">Logar</a>';
 
-            <?php }
+            }
             // Caso o UsuarioID Esteja Setado 
             else{ 
                 // Página Atual Diferente de Conta Exibe o Link pra Conta
