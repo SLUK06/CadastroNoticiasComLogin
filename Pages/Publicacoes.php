@@ -31,11 +31,11 @@
             if ($resultConn !== TRUE) {
                 header("Location: " . $_SERVER['PHP_SELF']);
                 
-                $msgSucessoErro = "Notícia publicada com SUCESSO!</br>";
+                $msgSucessoErro = "Post publicado com SUCESSO!</br>";
         
                 exit;
             } else {
-                $msgSucessoErro = "ERRO ao publicar a notícia " . $Conn->error . "</br>";
+                $msgSucessoErro = "ERRO ao publicar o Post" . $Conn->error . "</br>";
             }
         }
     }

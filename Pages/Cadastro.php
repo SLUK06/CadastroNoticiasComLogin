@@ -79,7 +79,6 @@
                     //Verifica se a Inserção de Dados foi bem Sucedida
                     if($result->num_rows !== 1){
                         header("Location: Login.php");
-        
                         exit;
                     } else {
                         
