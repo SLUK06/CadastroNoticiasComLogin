@@ -186,22 +186,22 @@ $Conn->close();
                 <div class="Todas-Publicacoes">
                     <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
                         <div class="publicacoes">
-                        <div class="nome">
-                            <b><?php echo $nomeBp[$i] ?></b> publicou:
+                            <div class="nome">
+                                <b><?php echo $nomeBp[$i] ?></b> publicou:
+                            </div>
+                            <div class="titulo">
+                                <?php echo $tituloBp[$i] ?>
+                            </div>
+                            <div class="conteudo">
+                                <?php echo $conteudoBp[$i] ?>
+                            </div>
+                            <?php
+                                if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
+                                    <div class="botoes-acao">
+                                        <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
+                                    </div>
+                            <?php } ?>
                         </div>
-                        <div class="titulo">
-                            <?php echo $tituloBp[$i] ?>
-                        </div>
-                        <div class="conteudo">
-                            <?php echo $conteudoBp[$i] ?>
-                        </div>
-                        <?php
-                            if($_SESSION['UsuarioID'] == $idUsrPublicBp[$i]){ ?>
-                                <div class="botoes-acao">
-                                    <button class="btn-excluir" onclick="window.location.href='../Config/ExcluirPublicacao.php?id=<?php echo $idPublicBp[$i]?>'">EXCLUIR</button>      
-                                </div>
-                        <?php } ?>
-                    </div>
                     <?php } ?>
                 </div>
             </section>
