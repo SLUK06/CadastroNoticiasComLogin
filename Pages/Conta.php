@@ -1,24 +1,72 @@
 <?php
-include "../Config/Config.php";
+    include "../Config/Config.php";
 
-if(!isset($_SESSION)) session_start();
+    if(!isset($_SESSION)) session_start();
 
-if(!isset($_SESSION['UsuarioID'])){
-    session_destroy();
-    header("Location: Home.php");
-    exit;
-}
-$idUsuario = $_SESSION['UsuarioID'];
-$nomeUsuario = $_SESSION['UsuarioNome'];
-$userUsuario = $_SESSION['UsuarioUser'];
-$emailUsuario = $_SESSION['UsuarioEmail'];
-$nivelUsuario = "";
+    if(!isset($_SESSION['UsuarioID'])){
+        session_destroy();
+        header("Location: Home.php");
+        exit;
+    }
+    $erroAlterarSenha = "";
+    $senhaAlterada = "";
 
-if($_SESSION['UsuarioNivel'] == 1){
-    $nivelUsuario = "COMUM";
-}elseif($_SESSION['UsuarioNivel'] == 2){
-    $nivelUsuario = "ADMINISTRADOR";
-}
+    $idUsuario = $_SESSION['UsuarioID'];
+    $nomeUsuario = $_SESSION['UsuarioNome'];
+    $userUsuario = $_SESSION['UsuarioUser'];
+    $emailUsuario = $_SESSION['UsuarioEmail'];
+    $nivelUsuario = "";
+
+    if($_SESSION['UsuarioNivel'] == 1){
+        $nivelUsuario = "COMUM";
+    }elseif($_SESSION['UsuarioNivel'] == 2){
+        $nivelUsuario = "ADMINISTRADOR";
+    }
+
+    if($_GET['mudarSenha'] == "on"){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $senhaAntiga = $_POST['SenhaAtual'];
+            $senhaNova = $_POST['NovaSenha'];
+            $verificaSenha = $_POST['VerificaNovaSenha'];
+
+            if($senhaNova == $verificaSenha){
+
+                $sql = "SELECT `id`, `usuario`, `senha` FROM `usuarios` WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
+                $stmt = $Conn->prepare($sql);
+                $stmt->bind_param("iss", $idUsuario, $userUsuario, $emailUsuario);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if($result->num_rows == 1){
+
+                    $resultado = $result->fetch_assoc();
+
+                    $senhaCrypt = password_hash($senhaNova, PASSWORD_DEFAULT);
+
+                    if(password_verify($senhaAntiga, $resultado['senha'])){
+                        $sql ="UPDATE `usuarios` SET `senha` = ? WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
+                        $stmt = $Conn->prepare($sql);
+                        $stmt->bind_param("siss", $senhaCrypt, $idUsuario, $userUsuario, $emailUsuario);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if($stmt->affected_rows === 1){
+                            header("Location: Conta.php?aba=dadosConta&mudarSenha=off");
+                            $senhaAlterada = "Senha Alterada Com Sucesso!";
+                        } else {
+                            $erroAlterarSenha = "Erro ao Alterar Senhas!";
+                        }
+                    }else {
+                        $erroAlterarSenha = "Não foi possivel alterar a senha!";
+                    }
+                } else {
+                    $erroAlterarSenha = "Não foi possivel alterar a senha!";
+                }
+            } else {
+                $erroAlterarSenha = "As senhas Não Coincidem!";
+            }
+        }
+    }
 $Conn->close();
 ?>
 <!DOCTYPE html>
@@ -29,6 +77,7 @@ $Conn->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="StyleSheet" type="text/css" href="../Styles/Styles.css">
     <link rel="StyleSheet" type="text/css" href="../Styles/StylesConta.css">
     <title>Minha Conta</title>
@@ -46,7 +95,6 @@ $Conn->close();
                 <div class="titulo-conta">
                     <text>MINHA CONTA</text>
                 </div>
-
                 <div class="sessao meu-nome">
                     <label>
                         Nome:
@@ -86,10 +134,11 @@ $Conn->close();
                     <label class="mudar-senha">
                         <?php if($_GET['mudarSenha'] == "off"){ ?>
                             <a class="link-admin" href="?aba=dadosConta&mudarSenha=on" >MUDAR SENHA</a>
+                            <?php echo $senhaAlterada ?>
                             <?php }elseif($_GET['mudarSenha'] == "on"){ ?>
                                 <a class="link-admin" href="?aba=dadosConta&mudarSenha=off" >FECHAR</a>
 
-                                <form class="form-mudar-senha" action="Conta.php" method="POST">
+                                <form class="form-mudar-senha" action="Conta.php?aba=dadosConta&mudarSenha=on" method="POST">
                                     <label class="inputs">
                                         Senha Atual:
                                         <input type="password" name="SenhaAtual" class="input-mudar-senha" placeholder="Senha Atual" required>
@@ -103,6 +152,7 @@ $Conn->close();
                                         <input type="password" name="VerificaNovaSenha" class="input-mudar-senha" placeholder="Repita a Nova Senha" required>
                                     </label>
                                     <button type="submit" class=" btn-send">MUDAR SENHA</button>
+                                    <?php echo $erroAlterarSenha ?>
                                 </form>
                             <?php } ?>
                     </label>
