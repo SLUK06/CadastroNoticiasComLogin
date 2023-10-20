@@ -72,6 +72,21 @@ main{
 .btn-post-open{
     background-color: #BDBDBD;
 }
+details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+summary{
+    margin: 10px 0;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+summary:hover{
+    cursor: pointer;
+}
 .form-post form{
     display: flex;
     flex-direction: column;

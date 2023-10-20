@@ -93,12 +93,32 @@ body{
     width: 100%;
 }
 .input-mudar-senha{
-    margin: 0 0 20px 0;
+    margin-bottom:10px;
     width: 98%;
 }
 
 .form-mudar-senha button{
     align-self: center;
+}
+.open-form-mudar-senha{
+    margin-top: 10px;
+    width: 300px;
+    transform-origin: 100% 100%; 
+}
+
+details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+summary{
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+summary:hover{
+    cursor: pointer;
 }
 @media(max-width: 700px){
     .sessao{

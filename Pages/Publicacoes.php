@@ -75,11 +75,11 @@
     <?php include "../Includes/Header.php" ?>
     <main>
         <?php
-            if($_SESSION['UsuarioID'] !== null){
-                if(!isset($_GET['publicar'])){
-                    $_GET['publicar'] = "formPostOff";
-                } 
-                if($_GET['publicar'] == "formPostOn"){?>
+            if($_SESSION['UsuarioID'] !== null){ ?>
+                <details>
+                    <summary class="link-pages btn-post-open">
+                        CRIAR POST
+                    </summary>
                     <div class="form-post">
                         <form action="Publicacoes.php" method="POST">
                             <label>
@@ -92,15 +92,13 @@
                             </label>
                             <button type="submit">PUBLICAR</button>
                         </form>
-                        <a class="btn-post-close link-pages" href="Publicacoes.php?publicar=formPostOff">FECHAR</a>
                         <?php echo $msgErro ?>
                         <?php echo $msgSucessoErro ?>
                     </div>
-                <?php } else { ?>
-                    <a class="btn-post-open link-pages" href="Publicacoes.php?publicar=formPostOn">CRIAR POST</a>
-                <?php }
-            } 
-        ?> 
+                </details>
+            <?php } else { ?>
+                
+            <?php } ?>
         <div class="titulo-noticias">
             <text>TODAS AS PUBLICAÇÕES</text>
         </div>

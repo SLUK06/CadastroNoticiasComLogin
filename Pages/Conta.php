@@ -23,50 +23,50 @@
         $nivelUsuario = "ADMINISTRADOR";
     }
 
-    if($_GET['mudarSenha'] == "on"){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $senhaAntiga = $_POST['SenhaAtual'];
-            $senhaNova = $_POST['NovaSenha'];
-            $verificaSenha = $_POST['VerificaNovaSenha'];
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $senhaAntiga = $_POST['SenhaAtual'];
+        $senhaNova = $_POST['NovaSenha'];
+        $verificaSenha = $_POST['VerificaNovaSenha'];
 
-            if($senhaNova == $verificaSenha){
+        if($senhaNova == $verificaSenha){
 
-                $sql = "SELECT `id`, `usuario`, `senha` FROM `usuarios` WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
-                $stmt = $Conn->prepare($sql);
-                $stmt->bind_param("iss", $idUsuario, $userUsuario, $emailUsuario);
-                $stmt->execute();
-                $result = $stmt->get_result();
+            $sql = "SELECT `id`, `usuario`, `senha` FROM `usuarios` WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
+            $stmt = $Conn->prepare($sql);
+            $stmt->bind_param("iss", $idUsuario, $userUsuario, $emailUsuario);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-                if($result->num_rows == 1){
+            if($result->num_rows == 1){
 
-                    $resultado = $result->fetch_assoc();
+                $resultado = $result->fetch_assoc();
 
-                    $senhaCrypt = password_hash($senhaNova, PASSWORD_DEFAULT);
+                $senhaCrypt = password_hash($senhaNova, PASSWORD_DEFAULT);
 
-                    if(password_verify($senhaAntiga, $resultado['senha'])){
-                        $sql ="UPDATE `usuarios` SET `senha` = ? WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
-                        $stmt = $Conn->prepare($sql);
-                        $stmt->bind_param("siss", $senhaCrypt, $idUsuario, $userUsuario, $emailUsuario);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+                if(password_verify($senhaAntiga, $resultado['senha'])){
+                    $sql ="UPDATE `usuarios` SET `senha` = ? WHERE `id` = ? AND `usuario`= ? AND `email` = ?";
+                    $stmt = $Conn->prepare($sql);
+                    $stmt->bind_param("siss", $senhaCrypt, $idUsuario, $userUsuario, $emailUsuario);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                        if($stmt->affected_rows === 1){
-                            header("Location: Conta.php?aba=dadosConta&mudarSenha=off");
-                            $senhaAlterada = "Senha Alterada Com Sucesso!";
-                        } else {
-                            $erroAlterarSenha = "Erro ao Alterar Senhas!";
-                        }
-                    }else {
-                        $erroAlterarSenha = "Não foi possivel alterar a senha!";
+                    if($stmt->affected_rows === 1){
+                        header("Location: Conta.php?aba=dadosConta&mudarSenha=off");
+                        $senhaAlterada = "Senha Alterada Com Sucesso!";
+                    } else {
+                        $erroAlterarSenha = "Erro ao Alterar Senhas!";
                     }
-                } else {
+                }else {
                     $erroAlterarSenha = "Não foi possivel alterar a senha!";
                 }
             } else {
-                $erroAlterarSenha = "As senhas Não Coincidem!";
+                $erroAlterarSenha = "Não foi possivel alterar a senha!";
             }
+        } else {
+            $erroAlterarSenha = "As senhas Não Coincidem!";
         }
     }
+    
 $Conn->close();
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ $Conn->close();
     <?php include "../Includes/Header.php" ?> 
     <main>
         <div class="links-minha-conta">
-            <a class="link-conta" href="Conta.php?aba=dadosConta&mudarSenha=off">MEUS DADOS</a>
+            <a class="link-conta" href="Conta.php?aba=dadosConta">MEUS DADOS</a>
             <a class="link-conta" href="Conta.php?aba=minhasPublicacoes">MINHAS PUBLICAÇÕES</a>
         </div>
 
@@ -132,29 +132,29 @@ $Conn->close();
 
                 <div class="sessao alterar-senha">
                     <label class="mudar-senha">
-                        <?php if($_GET['mudarSenha'] == "off"){ ?>
-                            <a class="link-admin" href="?aba=dadosConta&mudarSenha=on" >MUDAR SENHA</a>
-                            <?php echo $senhaAlterada ?>
-                            <?php }elseif($_GET['mudarSenha'] == "on"){ ?>
-                                <a class="link-admin" href="?aba=dadosConta&mudarSenha=off" >FECHAR</a>
-
-                                <form class="form-mudar-senha" action="Conta.php?aba=dadosConta&mudarSenha=on" method="POST">
-                                    <label class="inputs">
-                                        Senha Atual:
-                                        <input type="password" name="SenhaAtual" class="input-mudar-senha" placeholder="Senha Atual" required>
-                                    </label>
-                                    <label class="inputs">
-                                        Nova Senha:
-                                        <input type="password" name="NovaSenha" class="input-mudar-senha" placeholder="Nova Senha" required>
-                                    </label>
-                                    <label class="inputs">
-                                        Repita a Nova Senha:
-                                        <input type="password" name="VerificaNovaSenha" class="input-mudar-senha" placeholder="Repita a Nova Senha" required>
-                                    </label>
-                                    <button type="submit" class=" btn-send">MUDAR SENHA</button>
-                                    <?php echo $erroAlterarSenha ?>
-                                </form>
-                            <?php } ?>
+                        <details>
+                            <summary class="link-conta">
+                                MUDAR SENHA
+                            </summary>
+                                <div class="open-form-mudar-senha">
+                                    <form class="form-mudar-senha" action="Conta.php?aba=dadosConta" method="POST">
+                                        <label class="inputs">
+                                            Senha Atual:
+                                            <input type="password" name="SenhaAtual" class="input-mudar-senha" placeholder="Senha Atual" required>
+                                        </label>
+                                        <label class="inputs">
+                                            Nova Senha:
+                                            <input type="password" name="NovaSenha" class="input-mudar-senha" placeholder="Nova Senha" required>
+                                        </label>
+                                        <label class="inputs">
+                                            Repita a Nova Senha:
+                                            <input type="password" name="VerificaNovaSenha" class="input-mudar-senha" placeholder="Repita a Nova Senha" required>
+                                        </label>
+                                        <button type="submit" class=" btn-send">MUDAR SENHA</button>
+                                        <?php echo $erroAlterarSenha ?>
+                                    </form>
+                                </div>
+                        </details>
                     </label>
                 </div>
                 <?php
