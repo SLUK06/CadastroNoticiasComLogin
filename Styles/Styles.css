@@ -18,6 +18,7 @@ header{
     top: 0;
     left: 0; 
     background-color: #ffffff;
+    z-index: 9;
 }
 main{
     display: flex;
@@ -214,6 +215,9 @@ form input, form textarea{
         width: 90vw;
     }
     .form-post{
+        width: 90vw;
+    }
+    .busca-publicacao{
         width: 90vw;
     }
 }
