@@ -129,23 +129,23 @@
                 },
                 messages : {
                     NomeCompleto : {
-                        required : "Por favor insira seu nome."
+                        required : "<font color='red'>Por favor insira seu nome.</font>"
                     },
                     Email : {
-                        required : "Por favor insira seu email.",
-                        email : "Por favor insira um email válido."
+                        required : "<font color='red'>Por favor insira seu email.</font>",
+                        email : "<font color='red'>Por favor insira um email válido.</font>"
                     },
                     Usuario : {
-                        required : "Por favor insira um usuário.",
-                        minlength : "O Usuário deve conter no mínimo 8 caracteres."
+                        required : "<font color='red'>Por favor insira um usuário.</font>",
+                        minlength : "<font color='red'>O Usuário deve conter no mínimo 8 caracteres.</font>"
                     },
                     Senha : {
-                        required : "Por favor insira uma senha.",
-                        minlength : "A senha deve conter no mínimo 8 caracteres."
+                        required : "<font color='red'>Por favor insira uma senha.</font>",
+                        minlength : "<font color='red'>A senha deve conter no mínimo 8 caracteres.</font>"
                     },
                     VerificaSenha : {
-                        required : "Por favor insira novamente a senha.",
-                        equalTo : "As senhas não coincidem."
+                        required : "<font color='red'>Por favor insira novamente a senha.</font>",
+                        equalTo : "<font color='red'>As senhas não coincidem.</font>"
                     }
                 }
             });
@@ -160,21 +160,21 @@
             <form class="form-cadastro" id="form-cadastro" action="Cadastro.php" method="post">
                 <label class="inputs">
                     Nome Completo:
-                    <input type="text" name="NomeCompleto" id="NomeConpleto" class="input" placeholder="Nome Completo" >
+                    <input type="text" name="NomeCompleto" id="NomeCompleto" class="input" placeholder="Nome Completo" required>
                 </label>
                 <label class="inputs">
                     Email:
-                    <input type="email" name="Email" id="Email" class="input" placeholder="Email" >
+                    <input type="email" name="Email" id="Email" class="input" placeholder="Email" required>
                 </label>
                 <label id="ResultadoEmail"></label>
                 <label class="inputs">
                     Usuário:
-                    <input type="text" name="Usuario" id="Usuario" class="input" placeholder="Usuario" >
+                    <input type="text" name="Usuario" id="Usuario" class="input" placeholder="Usuario" required>
                 </label>
                 <span id="ResultadoUsuario"></span>
                 <label class="inputs">
                     Senha:
-                    <input type="password" name="Senha" id="Senha" class="input" placeholder="Senha" >
+                    <input type="password" name="Senha" id="Senha" class="input" placeholder="Senha" minlength="8" required>
                 </label>    
                 <label class="inputs">
                     Verifique sua Senha:
