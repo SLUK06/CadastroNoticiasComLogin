@@ -183,6 +183,7 @@ $Conn->close();
                 <div class="titulo-conta">
                     <text>MINHAS PUBLICAÇÕES</text>
                 </div>
+                <?php echo $nenhumaPublicacao ?>
                 <div class="Todas-Publicacoes">
                     <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
                         <div class="publicacoes">

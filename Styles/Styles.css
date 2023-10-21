@@ -205,7 +205,7 @@ form input, form textarea{
     main{
         margin: 115px 20px 20px 20px;
     }
-    .titulo-site, h1, .links-header{
+    .titulo-site h1, .links-header{
         padding: 0;
     }
 }

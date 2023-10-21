@@ -37,7 +37,7 @@
             $idUsuario = $_SESSION['UsuarioID'];
             $nomeUsuario = $_SESSION['UsuarioNome'];
 
-            $sql = "INSERT INTO `postagens` (`idUsuario`,`nivelUsuario` `nome`, `titulo`, `conteudo`) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO `postagens` (`idUsuario`,`nome`, `titulo`, `conteudo`) VALUES (?, ?, ?, ?)";
 
             $stmt = $Conn->prepare($sql);
             $stmt->bind_param("isss", $idUsuario, $nomeUsuario, $titulo, $conteudo);

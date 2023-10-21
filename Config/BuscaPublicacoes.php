@@ -9,6 +9,7 @@ include "Config.php";
     $idPublicBp = array();
     $idUsrPublicBp = array();
 
+    $nenhumaPublicacao = "";
 
     $sql = $_SESSION['sql'];
     $resultPosts = $Conn->query($sql);
@@ -27,5 +28,5 @@ include "Config.php";
             $idUsrPublicBp[] = $row['idUsuario'];
         }
     } else {
-        echo "Nehuma Publicação Foi Encontrada!";
+        $nenhumaPublicacao = "Nehuma Publicação Foi Encontrada!";
     }
