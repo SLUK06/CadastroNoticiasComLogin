@@ -99,34 +99,88 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="StyleSheet" type="text/css" href="../Styles/StylesForms.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../Config/Ajax/Ajax.js"></script>
+    <script src="../Config/jQuery/jquery.validate.min.js"></script>
+    
     <title>Cadastro</title>
+    <script>
+        $(function(){
+            $("#form-cadastro").validate({
+                rules : {
+                    NomeCompleto : {
+                        required : true
+                    },
+                    Email : {
+                        required :  true,
+                    },
+                    Usuario : {
+                        required : true,
+                        minlength : 8
+                    },
+                    Senha : {
+                        required : true,
+                        minlength : 8
+                    },
+                    VerificaSenha : {
+                        required : true,
+                        equalTo : "#Senha"
+                    }
+                },
+                messages : {
+                    NomeCompleto : {
+                        required : "Por favor insira seu nome."
+                    },
+                    Email : {
+                        required : "Por favor insira seu email.",
+                        email : "Por favor insira um email válido."
+                    },
+                    Usuario : {
+                        required : "Por favor insira um usuário.",
+                        minlength : "O Usuário deve conter no mínimo 8 caracteres."
+                    },
+                    Senha : {
+                        required : "Por favor insira uma senha.",
+                        minlength : "A senha deve conter no mínimo 8 caracteres."
+                    },
+                    VerificaSenha : {
+                        required : "Por favor insira novamente a senha.",
+                        equalTo : "As senhas não coincidem."
+                    }
+                }
+            });
+        });
+        
+    </script>
 </head>
 <body>
     <main class="conteudo-cadastro">
         <div class="container-form">
             <text class="titulo">CADASTRO</text>
-            <form class="form-cadastro" action="Cadastro.php" method="post">
+            <form class="form-cadastro" id="form-cadastro" action="Cadastro.php" method="post">
                 <label class="inputs">
                     Nome Completo:
-                    <input type="text" name="NomeCompleto" class="input" placeholder="Nome Completo" required>
+                    <input type="text" name="NomeCompleto" id="NomeConpleto" class="input" placeholder="Nome Completo" >
                 </label>
                 <label class="inputs">
                     Email:
-                    <input type="email" name="Email"class="input" placeholder="Email" required>
+                    <input type="email" name="Email" id="Email" class="input" placeholder="Email" >
                 </label>
+                <label id="ResultadoEmail"></label>
                 <label class="inputs">
                     Usuário:
-                    <input type="text" name="Usuario" class="input" placeholder="Usuario" required>
-                </label>    
+                    <input type="text" name="Usuario" id="Usuario" class="input" placeholder="Usuario" >
+                </label>
+                <span id="ResultadoUsuario"></span>
                 <label class="inputs">
                     Senha:
-                    <input type="password" name="Senha" class="input" placeholder="Senha" required>
+                    <input type="password" name="Senha" id="Senha" class="input" placeholder="Senha" >
                 </label>    
                 <label class="inputs">
                     Verifique sua Senha:
-                    <input type="password" name="VerificaSenha" class="input" placeholder="Repita a Senha" required>
+                    <input type="password" name="VerificaSenha" id="VerificaSenha" class="input" placeholder="Repita a Senha" >
                 </label>
-                <button type="submit" class="inputs btn-send">CADASTRAR</button>
+                <button type="submit" id="Submit" class="inputs btn-send">CADASTRAR</button>
                 <text class="mgs-erros">
                     <b>
                         <?php echo $msgSenhasDiferentes ?>
@@ -140,4 +194,5 @@
         </div>
     </main>
 </body>
+<script src="../Config/js/Validacao.js"></script>
 </html>
