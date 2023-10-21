@@ -110,7 +110,8 @@
         </div>
         <section class="Conteudo">
             <?php
-                if($_POST['InputBusca'] !== ""){
+            if($_SERVER['REQUEST_METHOD'] = 'POST'){
+                if(isset($_POST['InputBusca']) && $_POST['InputBusca'] ==! ""){
                     $busca = $_POST['InputBusca'];
                     $_SESSION['sql'] = "SELECT * FROM `postagens` WHERE ( `titulo` LIKE '%$busca%' OR `conteudo` LIKE '%$busca%' OR `nome` LIKE '%$busca%') ORDER BY `id` DESC";
                     include "../Config/BuscaPublicacoes.php";
@@ -118,7 +119,7 @@
                     $_SESSION['sql'] = "SELECT * FROM `postagens` ORDER BY `id` DESC";
                     include "../Config/BuscaPublicacoes.php";
                 }
-                    
+            }        
             ?>
             <div class="Todas-Publicacoes">
                 <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
