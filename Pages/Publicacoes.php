@@ -99,9 +99,9 @@
             <?php } else { ?>
                 
             <?php } ?>
-        <form class="form-busca-bublicacao">
+        <form class="form-busca-bublicacao"  method="POST">
             <div class="busca-publicacao">
-                <input type="text" class="input-busca" placeholder="Pesquisar...">
+                <input type="text" class="input-busca" name="InputBusca" placeholder="Pesquisar...">
                 <svg aria-hidden="true" class="icone-busca" width="18" height="18" viewBox="0 0 18 18"><path d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"></path></svg>
             </div>
         </form>        
@@ -109,9 +109,16 @@
             <text>TODAS AS PUBLICAÇÕES</text>
         </div>
         <section class="Conteudo">
-            <?php 
-                $_SESSION['sql'] = "SELECT * FROM `postagens` ORDER BY `id` DESC";
-                include "../Config/BuscaPublicacoes.php";
+            <?php
+                if($_POST['InputBusca'] !== ""){
+                    $busca = $_POST['InputBusca'];
+                    $_SESSION['sql'] = "SELECT * FROM `postagens` WHERE ( `titulo` LIKE '%$busca%' OR `conteudo` LIKE '%$busca%' OR `nome` LIKE '%$busca%') ORDER BY `id` DESC";
+                    include "../Config/BuscaPublicacoes.php";
+                }else{
+                    $_SESSION['sql'] = "SELECT * FROM `postagens` ORDER BY `id` DESC";
+                    include "../Config/BuscaPublicacoes.php";
+                }
+                    
             ?>
             <div class="Todas-Publicacoes">
                 <?php for($i = 0; $i < count($nomeBp); $i ++){ ?>
