@@ -177,6 +177,7 @@ form input, form textarea{
     font-weight: bold;
     height: 30px;
     font-size: 18px;
+    height: auto;
 }
 .conteudo{
     align-self: center;

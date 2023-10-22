@@ -84,7 +84,7 @@
                         <form action="Publicacoes.php" method="POST">
                             <label>
                                 <b>Título:</b>
-                                <input type="text" name="Titulo" placeholder="Titulo" required>
+                                <input type="text" name="Titulo" placeholder="Titulo" maxlength="30" required>
                             </label>
                             <label>
                                 <b>Conteúdo:</b>
